@@ -1,0 +1,32 @@
+main {
+  border-width: 3px;
+  border-color: black;
+  border-style: solid;
+  width: 500px;
+  margin-left:25%;
+  margin-top:5%;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+#titleSection {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#titleSection h2 {
+  font-weight:500;
+}
+
+#listingSection {
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
+}
