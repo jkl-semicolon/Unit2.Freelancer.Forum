@@ -14,18 +14,6 @@ const toBeAddedFreelancersArray = [
   {name: 'Julius', occupation: 'Caesar', startingPrice: '$300',}
 ]
 
-/////////////////////////////////////////////////////////////
-//                     QUERY SELECTORS                     //
-/////////////////////////////////////////////////////////////
-
-// const listingSection = document.querySelector('#listingSection');
-
-/////////////////////////////////////////////////////////////
-//                     EVENT LISTENERS                     //
-/////////////////////////////////////////////////////////////
-
-// listingSection.addEventListener()
-
 const render = () => {
 
   const nameList = freelancersArray.map((currentFreelancer) => {
