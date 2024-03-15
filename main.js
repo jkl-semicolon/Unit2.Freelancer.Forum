@@ -97,7 +97,7 @@ const addFreelancer = () => {
     additionalOccupations.splice(randomOccupationIndex, 1);
     additionalStartingPrices.splice(randomStartingPriceIndex, 1);
   } else clearInterval(addFreelancerInterval);
-  
+
   render();
 }
 // This function allows us to add the first freelancer in our to be added freelancers array
@@ -106,5 +106,5 @@ const addFreelancer = () => {
 // additional names, additional occupations, and additional starting prices arrays.
 // Once that is also empty, the intervals are stopped. It then re-renders our webpage.
 
-const addFreelancerInterval = setInterval(addFreelancer, 200);
-// We set an interval of 3 seconds to add new freelancers to our array.
+const addFreelancerInterval = setInterval(addFreelancer, 1500);
+// We set an interval of 1.5 seconds to add new freelancers to our array.
