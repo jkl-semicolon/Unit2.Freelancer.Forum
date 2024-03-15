@@ -51,8 +51,7 @@ const render = () => {
 render();
 
 const addFreelancer = () => {
-  const toBeAdded = toBeAddedFreelancersArray.shift();
-  freelancersArray.push(toBeAdded);
+  freelancersArray.push(toBeAddedFreelancersArray.shift());
   render();
   if (freelancersArray.length === 10) clearInterval(addFreelancerInterval);
 }
