@@ -82,22 +82,23 @@ render();
 // We render our webpage once upon starting the webpage to populate our freelancers list
 // with the current freelancers in our freelancers array.
 
+const addRandomFreelancer = (additionalArray) => {
+  const randomArrayIndex = Math.floor(Math.random() * additionalArray.length);
+  const toReturn = additionalArray[randomArrayIndex];
+  additionalArray.splice(randomArrayIndex, 1);
+  return toReturn;
+}
+// This function will prepare the values to be added to the the freelancers array.
+
 const addFreelancer = () => {
   if (toBeAddedFreelancersArray.length > 0) freelancersArray.push(toBeAddedFreelancersArray.shift());
   else if (additionalNames.length && additionalOccupations.length && additionalStartingPrices.length > 0) {
-    const randomNameIndex = Math.floor(Math.random() * additionalNames.length);
-    const randomOccupationIndex = Math.floor(Math.random() * additionalOccupations.length);
-    const randomStartingPriceIndex = Math.floor(Math.random() * additionalStartingPrices.length);
     freelancersArray.push({
-      name: additionalNames[randomNameIndex],
-      occupation: additionalOccupations[randomOccupationIndex],
-      startingPrice: additionalStartingPrices[randomStartingPriceIndex],
+      name: addRandomFreelancer(additionalNames),
+      occupation: addRandomFreelancer(additionalOccupations),
+      startingPrice: addRandomFreelancer(additionalStartingPrices),
     })
-    additionalNames.splice(randomNameIndex, 1);
-    additionalOccupations.splice(randomOccupationIndex, 1);
-    additionalStartingPrices.splice(randomStartingPriceIndex, 1);
   } else clearInterval(addFreelancerInterval);
-
   render();
 }
 // This function allows us to add the first freelancer in our to be added freelancers array
@@ -106,5 +107,5 @@ const addFreelancer = () => {
 // additional names, additional occupations, and additional starting prices arrays.
 // Once that is also empty, the intervals are stopped. It then re-renders our webpage.
 
-const addFreelancerInterval = setInterval(addFreelancer, 1500);
+const addFreelancerInterval = setInterval(addFreelancer, 200);
 // We set an interval of 1.5 seconds to add new freelancers to our array.
