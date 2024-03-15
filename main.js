@@ -17,6 +17,12 @@ const toBeAddedFreelancersArray = [
 // After a set interval, the first freelancer in this array is removed and added to the 
 // end of freelancers array.
 
+const additionalNames = ['Kelly','Linda','Marvin','Nell','Oscar','Pedro','Quincy','Romeo','Samantha','Timothy','Uma','Vanessa','Warren','Xerxes','Yanni','Zoey'];
+const additionalOccupations = ['Evangelist','Ninja','Ghostbuster','Magician','Animal Therapist','Playwright','Elephant Whisperer','Overlord','Color Expert','Cultist','Surfing Instructor','Fortune Cookie Writer','Human Statue','Graffiti Artist','Food Taster','Ice Sculptor'];
+const additionalStartingPrices = ['$150','$2','$750','$1,100','$444',"$101",'$90','$666','$42','$300','$35','$20','$65','$190','$222','$1,200'];
+// Once our toBeAddedFreelancersArray is empty, we can randomize different combinations
+// of additionalNames, additionalOccupations, and additionalStartingPrices to our freelancersArray.
+
 const render = () => {
 // Our render function will turn the array of freelancer objects above to be populated in our webpage.
 // Each object has three properties; each property will be turned into an html 'h3' element with
@@ -77,13 +83,28 @@ render();
 // with the current freelancers in our freelancers array.
 
 const addFreelancer = () => {
-  freelancersArray.push(toBeAddedFreelancersArray.shift());
+  if (toBeAddedFreelancersArray.length > 0) freelancersArray.push(toBeAddedFreelancersArray.shift());
+  else if (additionalNames.length && additionalOccupations.length && additionalStartingPrices.length > 0) {
+    const randomNameIndex = Math.floor(Math.random() * additionalNames.length);
+    const randomOccupationIndex = Math.floor(Math.random() * additionalOccupations.length);
+    const randomStartingPriceIndex = Math.floor(Math.random() * additionalStartingPrices.length);
+    freelancersArray.push({
+      name: additionalNames[randomNameIndex],
+      occupation: additionalOccupations[randomOccupationIndex],
+      startingPrice: additionalStartingPrices[randomStartingPriceIndex],
+    })
+    additionalNames.splice(randomNameIndex, 1);
+    additionalOccupations.splice(randomOccupationIndex, 1);
+    additionalStartingPrices.splice(randomStartingPriceIndex, 1);
+  } else clearInterval(addFreelancerInterval);
+  
   render();
-  if (freelancersArray.length === 10) clearInterval(addFreelancerInterval);
 }
 // This function allows us to add the first freelancer in our to be added freelancers array
-// to the end of our main freelancers array. It then re-renders our webpage.
+// to the end of our main freelancers array. Once the to be added freelancers array is
+// empty, it will then choose a random name, occupation, and starting price from our
+// additional names, additional occupations, and additional starting prices arrays.
+// Once that is also empty, the intervals are stopped. It then re-renders our webpage.
 
-const addFreelancerInterval = setInterval(addFreelancer, 5000);
-// We set an interval of 5 seconds to add new freelancers to our array. Our array stops updating
-// our freelancers array reaches 10 freelancer objects.
+const addFreelancerInterval = setInterval(addFreelancer, 200);
+// We set an interval of 3 seconds to add new freelancers to our array.
